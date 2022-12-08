@@ -41,7 +41,7 @@ const  list=[
         mail:"ckhadadze@gmail.com",
         pn:"19086243187",
         name:"vinme",
-        surname:"chkadua_2",
+        surname:"chkadua",
         birthDate:"17/12/2014",
         category:"user_4",
         status:"Blocked"
@@ -155,6 +155,10 @@ app.get('/getList',(req,res)=>{
     console.log({statusArr,categories})
     res.send(list)
 });
+app.get('/dialog',(req,res)=>{
+    console.log({statusArr,categories})
+    res.send(list)
+});
 app.get('/getList/arrays',(req,res)=>{
     // console.log({statusArr,categories})
     res.send({statusArr,categories})
@@ -182,6 +186,25 @@ app.post('/dialog',(req,res)=>{
     list.push(result)
     res.send(list)
 });
+
+app.put('/dialog',(req,res)=>{
+    list[req.body.id]=req.body.data
+    console.log("$$$",req.body.id,req.body,list[req.body.id],list)
+    res.send(list)
+});
+// ///
+// app.put("/status",(req,res)=>{
+//     console.log(req.body,  statusArr[req.body.id])
+//     statusArr[req.body.id] = {status:req.body.status};
+//  res.send(statusArr)
+// })
+// ///
+app.delete("/delete/details/:id",(req,res)=>{
+    console.log(req.body,  list[req.params.id])
+    list.splice(req.params.id,1)
+    // statusArr[req.body.id] = {user:req.body.user};
+ res.send(list)
+})
 
 
 
